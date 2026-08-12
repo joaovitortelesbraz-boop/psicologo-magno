@@ -1,0 +1,28 @@
+node_modules
+dist
+dist-ssr
+*.local
+
+# Variáveis de ambiente e segredos — nunca versionar
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Artefatos de build incremental do TypeScript
+*.tsbuildinfo
+
+.DS_Store
+Thumbs.db
+
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.dev.log

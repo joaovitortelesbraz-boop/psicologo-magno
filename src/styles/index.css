@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Altura do header — usada por scroll-margin e pelo espaçador do hero. */
+    --header-h: 68px;
+  }
+
+  @media (min-width: 1024px) {
+    :root {
+      --header-h: 80px;
+    }
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-cream-50 font-sans text-ink antialiased;
+    text-rendering: optimizeLegibility;
+    /* Nenhuma seção deve gerar rolagem lateral. */
+    overflow-x: hidden;
+  }
+
+  /* Alvos de âncora param abaixo do header fixo. */
+  section[id] {
+    scroll-margin-top: calc(var(--header-h) + 8px);
+  }
+
+  /* Estado de foco visível e coerente com a paleta. */
+  :where(a, button, summary, [tabindex]):focus-visible {
+    @apply outline-none ring-2 ring-olive/45 ring-offset-2 ring-offset-cream-50 rounded-[6px];
+  }
+
+  ::selection {
+    @apply bg-olive/15 text-ink-900;
+  }
+}
+
+@layer components {
+  /* ---------------------------------------------------------------------
+   * Tipografia de apoio
+   * ------------------------------------------------------------------- */
+
+  /* Rótulo pequeno em caixa alta com muito espaçamento (SOBRE MIM, etc.) */
+  .eyebrow {
+    @apply font-sans text-[10px] uppercase tracking-label text-ink-400 sm:text-[11px];
+  }
+
+  .section-title {
+    @apply font-serif font-light leading-[1.1] text-ink-900;
+    font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.375rem);
+  }
+
+  /* ---------------------------------------------------------------------
+   * Botões
+   * ------------------------------------------------------------------- */
+
+  .btn {
+    @apply inline-flex select-none items-center justify-center gap-2.5 rounded-full
+           font-sans text-[11px] font-medium uppercase tracking-wider2
+           transition duration-300 ease-soft sm:text-[12px];
+  }
+
+  .btn-primary {
+    @apply btn bg-olive-700 px-6 py-3.5 text-cream-50 shadow-pill
+           hover:bg-olive-900 active:translate-y-px sm:px-7 sm:py-4;
+  }
+
+  .btn-outline {
+    @apply btn border border-line-strong bg-transparent px-6 py-3.5 text-ink-700
+           hover:border-olive/50 hover:bg-white/60 active:translate-y-px sm:px-7;
+  }
+
+  /* ---------------------------------------------------------------------
+   * Composição da foto do hero
+   *
+   * A imagem original tem fundo de estúdio cinza-claro e NÃO é editada — a
+   * fusão com o ambiente é feita inteiramente em CSS, em três camadas:
+   *
+   *  1. `filter` estoura o cinza-claro do estúdio até o branco puro, ao mesmo
+   *     tempo em que aprofunda os tons escuros (cabelo, óculos, terno). O
+   *     Magno ganha contraste em vez de perder.
+   *  2. `mix-blend-mode: multiply` faz o branco puro desaparecer por completo
+   *     no fundo do hero — multiplicar por branco é a identidade. Só isso já
+   *     elimina a maior parte do retângulo; a máscara cuida do resto.
+   *  3. `mask-image` em duas camadas com `mask-composite`, para dissolver o
+   *     que sobra nas extremidades:
+   *       • silhueta radial → apaga laterais e cantos (onde o estúdio tem
+   *         vinheta e não chega a virar branco puro);
+   *       • base linear → no desktop não faz nada (a foto encosta no fim da
+   *         seção); abaixo de 1024px dissolve o corte reto da barra inferior.
+   *
+   * Os raios foram calculados sobre a geometria do arquivo (o Magno ocupa
+   * ~15%–77% na horizontal e ~5%–100% na vertical): o rosto, os óculos, os
+   * braços e o terno ficam na faixa 100% opaca da máscara.
+   *
+   * Com um PNG recortado, basta desligar `hasStudioBackground`.
+   * ------------------------------------------------------------------- */
+
+  .hero-photo {
+    /* Silhueta: dissolve laterais, topo e cantos. No desktop a foto encosta
+       no fim da seção, então uma única camada resolve — sem compositing. */
+    --hero-mask-shape: radial-gradient(
+      ellipse 68% 106% at 50% 52%,
+      #000 48%,
+      rgba(0, 0, 0, 0.86) 62%,
+      rgba(0, 0, 0, 0.36) 78%,
+      transparent 92%
+    );
+
+    -webkit-mask-image: var(--hero-mask-shape);
+    mask-image: var(--hero-mask-shape);
+  }
+
+  /* No mobile a foto flutua entre o texto e a lista de informações, então o
+     corte reto da base também precisa se dissolver. Só a faixa final da
+     imagem é afetada — rosto, óculos e braços permanecem 100% opacos.
+     O autoprefixer traduz `mask-composite` para o equivalente WebKit. */
+  @media (max-width: 1023px) {
+    .hero-photo {
+      --hero-mask-base: linear-gradient(
+        to bottom,
+        #000 88%,
+        rgba(0, 0, 0, 0.6) 96%,
+        transparent 100%
+      );
+
+      -webkit-mask-image: var(--hero-mask-shape), var(--hero-mask-base);
+      mask-image: var(--hero-mask-shape), var(--hero-mask-base);
+      mask-composite: intersect;
+    }
+  }
+
+  .hero-photo--blend {
+    mix-blend-mode: multiply;
+    filter: brightness(1.03) contrast(1.12) saturate(1.01);
+  }
+
+  /* ---------------------------------------------------------------------
+   * Ambiente claro do hero (aproximação em CSS do cenário da referência)
+   * ------------------------------------------------------------------- */
+
+  .hero-ambient {
+    background-color: #faf6f0;
+    background-image:
+      radial-gradient(60% 70% at 12% 38%, rgba(226, 210, 189, 0.55) 0%, transparent 62%),
+      radial-gradient(45% 55% at 88% 24%, rgba(233, 221, 203, 0.5) 0%, transparent 65%),
+      radial-gradient(70% 60% at 50% 92%, rgba(240, 232, 220, 0.75) 0%, transparent 70%),
+      /* O ponto mais claro fica atrás da foto. Era #ffffff puro; virou um
+         branco quente para receber o fundo estourado da fotografia sem
+         nenhum degrau de temperatura — e para a página não esbranquiçar. */
+      linear-gradient(105deg, #f0e7da 0%, #fbf8f3 34%, #fdfbf7 58%, #f7f0e6 100%);
+  }
+}
+
+@layer utilities {
+  /* ---------------------------------------------------------------------
+   * Revelação suave ao entrar na viewport
+   * ------------------------------------------------------------------- */
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1),
+      transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Painel do accordion: transição de altura sem medir o conteúdo em JS. */
+  .collapsible {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.42s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  .collapsible[data-open='true'] {
+    grid-template-rows: 1fr;
+  }
+
+  .collapsible > * {
+    min-height: 0;
+    overflow: hidden;
+  }
+}
+
+/* -----------------------------------------------------------------------
+ * Preferência por menos movimento — elegância antes de efeito.
+ * --------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .collapsible {
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
