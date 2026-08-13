@@ -21,12 +21,13 @@ src/
     Header.tsx           menu fixo + hambúrguer no mobile
     Hero.tsx             texto / foto / lista de fatos pessoais
     About.tsx            "Sobre mim" + ramo botânico
-    Services.tsx         "Áreas de atendimento" (6 cards)
-    NeuropsychAssessment.tsx  avaliação neuropsicológica + áreas cognitivas
-    TherapyProcess.tsx   linha do tempo "Como funciona a terapia"
-    Approach.tsx         "Base da minha atuação" + card de citação
+    Services.tsx         aspectos investigados + contextos da Neuropsicologia
+    AssessmentProcess.tsx  etapas da Avaliação Neuropsicológica
+    NeuropsychAssessment.tsx  avaliação + trabalho integrado
+    Approach.tsx         atuação profissional em Neuropsicologia
     FAQ.tsx              accordion acessível
     ContactCTA.tsx       CTA final em três regiões
+    OfficeLocation.tsx   endereço presencial + integração com Google Maps
     Footer.tsx           rodapé verde oliva escuro
     ui/                  Brand, Monogram, Reveal, botões, ícone do WhatsApp
     decorations/         ilustrações vetoriais (ramo e vaso)
@@ -40,30 +41,15 @@ src/
 **Regra do projeto:** nenhum texto, link ou dado profissional é escrito dentro
 dos componentes. Tudo vive em `src/data/siteContent.ts`.
 
-## ⚠ Informações pendentes
+## Informações de publicação pendentes
 
 Nada foi inventado. Os itens abaixo precisam ser confirmados antes de publicar.
-
-### Pendentes (dado ainda não informado)
 
 | Onde | O quê |
 | --- | --- |
 | `index.html` | URL canônica / `og:url` do domínio final e uma imagem de Open Graph 1200×630 dedicada (hoje aponta para a foto do hero). |
 
-### Provisórios (texto de partida, precisa de validação clínica)
-
-| Onde | O quê |
-| --- | --- |
-| `approach` | **A abordagem TCC NÃO está confirmada.** O campo `approach.status` carrega literalmente `PROVISÓRIO — NECESSÁRIO CONFIRMAR COM MAGNO`. |
-| `services.items` | As 6 áreas de atendimento precisam de validação profissional. |
-| `therapyProcess.steps` | Modalidade (online/presencial) e duração de 50 minutos. |
-| `faq.items` | Respostas escritas de forma genérica, sem afirmação clínica específica. |
-| `contact.onlineNote` | "Atendimento online para todo o Brasil e exterior." |
-
-O console do `npm run dev` também avisa quais constantes de contato ainda estão
-vazias.
-
-### Já confirmado pelo profissional
+## Conteúdo confirmado pelo profissional
 
 - **Contato real.** `WHATSAPP_NUMBER` (+55 27 99754-4949) e `INSTAGRAM_URL`
   (perfil do Magno) estão preenchidos. Todo botão de WhatsApp monta o link por
@@ -75,10 +61,9 @@ vazias.
   `professional` (`roleFull`, `role`, `crp`); header, hero, rodapé e SEO leem
   desses campos. O `role` curto ("Psicólogo") existe só para telas abaixo de
   640px, onde a atuação completa quebraria o bloco de marca.
-- **Conteúdo de Neuropsicologia** (`neuropsych`): o que faz o neuropsicólogo,
-  situações em que pode contribuir, avaliação neuropsicológica, áreas
-  investigadas e trabalho integrado. Os limites de conteúdo estão anotados no
-  próprio arquivo.
+- **Conteúdo de Neuropsicologia:** atuação profissional, situações em que pode
+  contribuir, aspectos investigados, processo da avaliação neuropsicológica e
+  trabalho integrado. Os limites de conteúdo estão anotados no próprio arquivo.
 
 ## Foto do profissional
 

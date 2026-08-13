@@ -7,9 +7,6 @@ export function Approach() {
   return (
     <section
       id="abordagem"
-      /* O texto abaixo é PROVISÓRIO — ver `approach.status` em siteContent.ts.
-         A abordagem TCC ainda precisa ser confirmada com o Magno. */
-      data-content-status={approach.status}
       className="px-5 py-14 sm:px-8 lg:py-20 lg:pl-12 lg:pr-[7%]"
     >
       <Reveal>

@@ -5,23 +5,14 @@
  * componentes — altere sempre por aqui.
  * ==========================================================================
  *
- *  LEGENDA DE STATUS
- *  -----------------
- *  [OK]         → informação veio da apresentação original do profissional.
- *  [PROVISÓRIO] → texto de partida, precisa de validação do Magno.
- *  [PENDENTE]   → dado ainda NÃO informado. Não inventar. Preencher depois.
- *
- *  RESUMO DO QUE FALTA (ver também README.md):
- *   1. approach (TCC)       → [PROVISÓRIO] NECESSÁRIO CONFIRMAR COM MAGNO
- *   2. services (6 áreas)   → [PROVISÓRIO] validar clinicamente
- *   3. therapyProcess       → [PROVISÓRIO] modalidade e duração das sessões
- *   4. faq (respostas)      → [PROVISÓRIO] validar clinicamente
- *   5. contact.onlineNote   → [PROVISÓRIO] confirmar abrangência do online
- *
- *  JÁ CONFIRMADO PELO PROFISSIONAL (não é mais provisório):
+ *  CONTEÚDO PROFISSIONAL CONFIRMADO
+ *  --------------------------------
  *   • Magno Pinheiro — Psicólogo e Neuropsicólogo — CRP 16/7616
- *   • conteúdo de `neuropsych` (Neuropsicologia e avaliação neuropsicológica)
+ *   • conteúdo de Neuropsicologia e avaliação neuropsicológica
  *   • WHATSAPP_NUMBER e INSTAGRAM_URL (contato real)
+ *
+ *  Não adicionar modalidade, duração, abordagem terapêutica, serviço ou
+ *  informação clínica sem confirmação expressa do profissional.
  * ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -109,7 +100,7 @@ export type NavItem = { label: string; href: string }
 export const navigation: NavItem[] = [
   { label: 'Início', href: '#inicio' },
   { label: 'Sobre mim', href: '#sobre' },
-  { label: 'Abordagem', href: '#abordagem' },
+  { label: 'Atuação', href: '#abordagem' },
   { label: 'Como posso ajudar', href: '#servicos' },
   { label: 'Perguntas frequentes', href: '#faq' },
   { label: 'Contato', href: '#contato' },
@@ -204,66 +195,7 @@ export const about = {
  * 6. COMO POSSO AJUDAR
  * -------------------------------------------------------------------------- */
 
-export type ServiceIcon =
-  | 'anxiety'
-  | 'selfEsteem'
-  | 'relationships'
-  | 'growth'
-  | 'stress'
-  | 'grief'
-
-export type Service = {
-  icon: ServiceIcon
-  title: string
-  description: string
-}
-
-export const services = {
-  label: 'Como posso ajudar',
-  title: 'Áreas de atendimento',
-  /**
-   * [PROVISÓRIO] As seis áreas abaixo precisam ser validadas
-   * profissionalmente com o Magno antes da publicação.
-   */
-  items: [
-    {
-      icon: 'anxiety',
-      title: 'Ansiedade',
-      description: 'Entenda e gerencie seus pensamentos e emoções.',
-    },
-    {
-      icon: 'selfEsteem',
-      title: 'Autoestima',
-      description: 'Fortaleça sua autoconfiança e seu amor-próprio.',
-    },
-    {
-      icon: 'relationships',
-      title: 'Relacionamentos',
-      description: 'Melhore sua comunicação e construa relações saudáveis.',
-    },
-    {
-      icon: 'growth',
-      title: 'Desenvolvimento pessoal',
-      description: 'Autoconhecimento e crescimento contínuo.',
-    },
-    {
-      icon: 'stress',
-      title: 'Estresse',
-      description: 'Aprenda a lidar com pressões do dia a dia de forma saudável.',
-    },
-    {
-      icon: 'grief',
-      title: 'Luto e perdas',
-      description: 'Elabore suas dores e encontre novos significados.',
-    },
-  ] satisfies Service[],
-} as const
-
-/* --------------------------------------------------------------------------
- * 6.1 AVALIAÇÃO NEUROPSICOLÓGICA
- * -------------------------------------------------------------------------- */
-
-export type NeuroAreaIcon =
+export type CognitiveAreaIcon =
   | 'attention'
   | 'memory'
   | 'language'
@@ -271,38 +203,30 @@ export type NeuroAreaIcon =
   | 'social'
   | 'executive'
 
-export type NeuroArea = { icon: NeuroAreaIcon; label: string }
+export type CognitiveArea = { icon: CognitiveAreaIcon; label: string }
 
 /**
- * [OK — CONFIRMADO] Conteúdo de Neuropsicologia.
+ * [OK — CONFIRMADO] Aspectos investigados e situações em que a Neuropsicologia
+ * pode contribuir — ambos citados pelo próprio profissional.
  *
- * Base factual: informações profissionais divulgadas pelo próprio Magno
- * (Neuropsicologia como especialidade da Psicologia, uso de instrumentos
- * padronizados, áreas do funcionamento cognitivo investigadas, contextos em
- * que pode contribuir e colaboração com outros profissionais). Os textos
- * abaixo foram redigidos originalmente para o site — não são cópia de
- * legenda de rede social.
+ * Este bloco substitui os antigos cards de layout que não tinham validação
+ * profissional.
  *
- * LIMITES DE CONTEÚDO — mantidos de propósito. NÃO acrescentar aqui:
- * nomes ou quantidade de testes, duração da avaliação, número de sessões,
- * público ou faixa etária, preços, formação/pós-graduação, outras condições
- * além das listadas em `contexts.items`, nem qualquer verbo de promessa
- * ("diagnostica", "comprova", "descobre", "cura", "resolve"). A avaliação
- * AUXILIA processos diagnósticos — essa é a linguagem correta.
+ * LIMITES — não acrescentar condições fora de `contexts.items`, não sugerir
+ * autodiagnóstico e não afirmar que a avaliação isoladamente confirma qualquer
+ * condição.
  */
-export const neuropsych = {
-  /** 1. O que é Neuropsicologia / o que faz o neuropsicólogo. */
-  intro: {
-    label: 'Neuropsicologia',
-    title: 'O que faz um neuropsicólogo?',
-    paragraphs: [
-      'A Neuropsicologia busca compreender a relação entre o funcionamento cerebral, os processos cognitivos e o comportamento.',
-      'O trabalho do neuropsicólogo permite investigar diferentes aspectos do funcionamento cognitivo e comportamental, contribuindo para uma compreensão mais ampla das necessidades de cada pessoa.',
-      'A atuação em Neuropsicologia pode envolver avaliação neuropsicológica, terapia e intervenções comportamentais.',
-    ],
-  },
-
-  /** 2. Contextos em que a Neuropsicologia pode contribuir. */
+export const services = {
+  label: 'Como posso ajudar',
+  title: 'Aspectos investigados na Avaliação Neuropsicológica',
+  areas: [
+    { icon: 'attention', label: 'Atenção' },
+    { icon: 'memory', label: 'Memória' },
+    { icon: 'language', label: 'Linguagem' },
+    { icon: 'reasoning', label: 'Raciocínio' },
+    { icon: 'social', label: 'Habilidades sociais' },
+    { icon: 'executive', label: 'Funções executivas' },
+  ] satisfies CognitiveArea[],
   contexts: {
     title: 'Em quais situações a Neuropsicologia pode contribuir?',
     description:
@@ -318,77 +242,47 @@ export const neuropsych = {
       'Transtornos psiquiátricos',
     ],
   },
+} as const
 
-  /** 3. A avaliação neuropsicológica e os aspectos avaliados. */
+/* --------------------------------------------------------------------------
+ * 6.1 AVALIAÇÃO NEUROPSICOLÓGICA
+ * -------------------------------------------------------------------------- */
+
+/**
+ * [OK — CONFIRMADO] Conteúdo de Neuropsicologia.
+ *
+ * Base factual: informações profissionais divulgadas pelo próprio Magno
+ * (Neuropsicologia como especialidade da Psicologia, uso de instrumentos
+ * padronizados, áreas do funcionamento cognitivo investigadas, contextos em
+ * que pode contribuir e colaboração com outros profissionais). Os textos
+ * abaixo foram redigidos originalmente para o site — não são cópia de
+ * legenda de rede social.
+ *
+ * LIMITES DE CONTEÚDO — mantidos de propósito. NÃO acrescentar aqui:
+ * nomes ou quantidade de testes, duração da avaliação, número de sessões,
+ * público ou faixa etária, preços, formação/pós-graduação, outras condições
+ * além das listadas em `services.contexts.items`, nem qualquer verbo de promessa
+ * ("diagnostica", "comprova", "descobre", "cura", "resolve"). A avaliação
+ * AUXILIA processos diagnósticos — essa é a linguagem correta.
+ */
+export const neuropsych = {
+  /**
+   * 1. A avaliação neuropsicológica.
+   *
+   * Os aspectos investigados (atenção, memória…) e os contextos em que a
+   * Neuropsicologia contribui vivem agora em `services` — aparecem uma única
+   * vez no site, na seção "Como posso ajudar". As quatro etapas do processo
+   * vivem em `assessmentProcess`.
+   */
   assessment: {
     label: 'Avaliação neuropsicológica',
     title: 'Entender também é uma forma de cuidar.',
-    /**
-     * Havia um terceiro parágrafo aqui, sobre auxiliar processos diagnósticos.
-     * A informação NÃO se perdeu: ela agora vive em `process.steps[2]`, onde
-     * aparece em contexto e de forma mais completa. Mantê-la nos dois lugares
-     * repetiria quase a mesma frase na mesma tela.
-     */
     paragraphs: [
       'A avaliação neuropsicológica é um processo que utiliza instrumentos padronizados para compreender diferentes aspectos do funcionamento cognitivo.',
-      'Ao longo da avaliação, podem ser investigadas áreas como atenção, memória, linguagem, raciocínio, habilidades sociais e funções executivas, contribuindo para uma compreensão mais ampla do funcionamento de cada pessoa.',
-    ],
-    areasLabel: 'Áreas que podem ser investigadas',
-    areas: [
-      { icon: 'attention', label: 'Atenção' },
-      { icon: 'memory', label: 'Memória' },
-      { icon: 'language', label: 'Linguagem' },
-      { icon: 'reasoning', label: 'Raciocínio' },
-      { icon: 'social', label: 'Habilidades sociais' },
-      { icon: 'executive', label: 'Funções executivas' },
-    ] satisfies NeuroArea[],
-  },
-
-  /**
-   * 4. Como funciona a avaliação, em quatro etapas.
-   *
-   * REGRA DE LINGUAGEM — a avaliação NÃO é apresentada como processo
-   * terapêutico, e concluir uma avaliação não implica seguir para terapia,
-   * reabilitação ou acompanhamento. A etapa 04 fala de possibilidade
-   * ("quando indicado", "podem contribuir"), nunca de encaminhamento
-   * automático. Não introduzir aqui: "garante o diagnóstico", "descobre",
-   * "comprova", "tratamento definitivo" ou qualquer promessa de resultado.
-   */
-  process: {
-    title: 'Como funciona uma Avaliação Neuropsicológica?',
-    steps: [
-      {
-        number: '01',
-        label: 'Compreensão inicial',
-        title: 'Conhecendo sua história',
-        description:
-          'O processo começa com uma compreensão detalhada da história e das necessidades de cada pessoa, considerando informações relevantes sobre seu contexto e as questões cognitivas, emocionais ou comportamentais apresentadas.',
-      },
-      {
-        number: '02',
-        label: 'Avaliação',
-        title: 'Investigação neuropsicológica',
-        description:
-          'A avaliação pode utilizar entrevistas, instrumentos padronizados e testes neuropsicológicos para investigar diferentes aspectos do funcionamento cognitivo, como atenção, memória, linguagem e outras funções relevantes para cada caso.',
-      },
-      {
-        number: '03',
-        label: 'Compreensão dos resultados',
-        title: 'Um olhar integrado',
-        description:
-          'As informações obtidas ao longo do processo contribuem para uma compreensão mais detalhada do funcionamento cognitivo e comportamental e podem auxiliar processos diagnósticos e a definição dos próximos passos.',
-      },
-      {
-        number: '04',
-        label: 'Próximos passos',
-        title: 'Cuidado individualizado',
-        description:
-          'Quando indicado, os resultados podem contribuir para o planejamento de estratégias e intervenções individualizadas, além de orientar o diálogo com familiares e outros profissionais envolvidos no cuidado.',
-      },
     ],
   },
 
-  /** 5. Trabalho integrado com outros profissionais. */
+  /** 2. Trabalho integrado com outros profissionais. */
   collaboration: {
     title: 'Um cuidado construído em conjunto',
     description:
@@ -396,76 +290,86 @@ export const neuropsych = {
     professionals: ['Neurologistas', 'Psiquiatras', 'Geriatras', 'Psicólogos'],
   },
 
-  /** 6. CTA — usa o WhatsApp centralizado, sem repetir número ou URL. */
+  /** 3. CTA — usa o WhatsApp centralizado, sem repetir número ou URL. */
   ctaLabel: 'Saiba mais sobre a avaliação',
-  /** [PROVISÓRIO] Apenas a mensagem inicial; o número vem de WHATSAPP_NUMBER. */
+  /** Mensagem inicial do CTA; o número vem de WHATSAPP_NUMBER. */
   whatsappMessage:
     'Olá, Magno. Encontrei seu site e gostaria de saber mais sobre a avaliação neuropsicológica.',
 } as const
 
 /* --------------------------------------------------------------------------
- * 7. COMO FUNCIONA A TERAPIA
+ * 7. PROCESSO DA AVALIAÇÃO NEUROPSICOLÓGICA
  * -------------------------------------------------------------------------- */
 
-export type ProcessIcon = 'screen' | 'clock' | 'person' | 'lock'
-
 export type ProcessStep = {
-  icon: ProcessIcon
+  number: string
+  label: string
   title: string
   description: string
 }
 
-export const therapyProcess = {
-  label: 'Como funciona a terapia',
-  title: 'Um espaço para você',
-  /**
-   * [PROVISÓRIO] Modalidade de atendimento (item 1) e duração das sessões
-   * (item 2) são valores de partida e DEVEM ser confirmados pelo psicólogo.
-   * Estão centralizados aqui justamente para não se espalharem pelo código.
-   */
+/**
+ * [OK — CONFIRMADO] As quatro etapas da avaliação neuropsicológica.
+ *
+ * Substitui o antigo bloco genérico. Nenhuma modalidade ou duração é afirmada
+ * aqui.
+ *
+ * REGRA DE LINGUAGEM — a avaliação NÃO é apresentada como processo
+ * terapêutico, e concluí-la não implica seguir para terapia, reabilitação ou
+ * acompanhamento. A etapa 04 fala de possibilidade ("quando indicado",
+ * "podem contribuir"), nunca de encaminhamento automático. Não introduzir:
+ * "garante o diagnóstico", "descobre", "comprova", "garante melhora",
+ * "tratamento definitivo" ou qualquer promessa de resultado.
+ */
+export const assessmentProcess = {
+  label: 'Como funciona',
+  title: 'O processo de Avaliação Neuropsicológica',
   steps: [
     {
-      icon: 'screen',
-      title: 'Atendimento online e presencial',
-      description: 'Mais flexibilidade e conforto para você.',
+      number: '01',
+      label: 'Compreensão inicial',
+      title: 'Conhecendo sua história',
+      description:
+        'O processo começa com uma compreensão detalhada da história e das necessidades de cada pessoa, considerando informações relevantes sobre seu contexto e as questões cognitivas, emocionais ou comportamentais apresentadas.',
     },
     {
-      icon: 'clock',
-      title: 'Sessões com duração de 50 minutos',
-      description: 'Um tempo dedicado exclusivamente a você.',
+      number: '02',
+      label: 'Avaliação',
+      title: 'Investigação neuropsicológica',
+      description:
+        'A avaliação pode utilizar entrevistas, instrumentos padronizados e testes neuropsicológicos para investigar os aspectos do funcionamento cognitivo relevantes para cada caso.',
     },
     {
-      icon: 'person',
-      title: 'Primeiro contato',
-      description: 'Vamos conversar para entender suas necessidades e como posso te ajudar.',
+      number: '03',
+      label: 'Resultados',
+      title: 'Um olhar integrado',
+      description:
+        'As informações obtidas ao longo do processo contribuem para uma compreensão mais detalhada do funcionamento cognitivo e comportamental e podem auxiliar processos diagnósticos e a definição dos próximos passos.',
     },
     {
-      icon: 'lock',
-      title: 'Sigilo e ética',
-      description: 'Você terá um espaço seguro, com total confidencialidade e acolhimento.',
+      number: '04',
+      label: 'Próximos passos',
+      title: 'Cuidado individualizado',
+      description:
+        'Quando indicado, os resultados podem contribuir para o planejamento de estratégias e intervenções individualizadas, além de orientar o diálogo com familiares e outros profissionais envolvidos no cuidado.',
     },
   ] satisfies ProcessStep[],
 } as const
 
 /* --------------------------------------------------------------------------
- * 8. ABORDAGEM PROFISSIONAL
+ * 8. ATUAÇÃO PROFISSIONAL
  * -------------------------------------------------------------------------- */
 
 export const approach = {
-  label: 'Abordagem profissional',
-  title: 'Base da minha atuação',
-  /**
-   * ⚠ PROVISÓRIO — NECESSÁRIO CONFIRMAR COM MAGNO.
-   * A abordagem TCC NÃO está confirmada. O texto abaixo é apenas um ponto de
-   * partida herdado do layout de referência e deve ser substituído pela
-   * abordagem real do profissional antes de qualquer publicação.
-   */
-  status: 'PROVISÓRIO — NECESSÁRIO CONFIRMAR COM MAGNO',
+  label: 'Atuação profissional',
+  title: 'Neuropsicologia',
   paragraphs: [
-    'Minha abordagem principal é a Terapia Cognitivo-Comportamental (TCC), baseada em evidências científicas e focada em compreender a relação entre pensamentos, emoções e comportamentos.',
-    'O objetivo é identificar padrões que geram sofrimento e desenvolver estratégias práticas para promover mudanças reais e duradouras na sua vida.',
+    'A Neuropsicologia busca compreender a relação entre o funcionamento cerebral, os processos cognitivos e o comportamento.',
+    'O trabalho do neuropsicólogo permite investigar diferentes aspectos do funcionamento cognitivo e comportamental, contribuindo para uma compreensão mais ampla das necessidades de cada pessoa.',
   ],
-  quoteLines: ['A mudança começa quando você decide', 'se colocar em primeiro lugar.'],
+  quoteLines: [
+    'A atuação em Neuropsicologia pode envolver avaliação neuropsicológica, terapia e intervenções comportamentais.',
+  ],
 } as const
 
 /* --------------------------------------------------------------------------
@@ -476,25 +380,11 @@ export type FaqItem = { question: string; answer: string }
 
 export const faq = {
   label: 'Perguntas frequentes',
-  /**
-   * [PROVISÓRIO] Respostas de partida, escritas de forma genérica e sem
-   * afirmações clínicas específicas. Ajustar com o Magno.
-   */
   items: [
     {
-      question: 'Como funciona a primeira sessão?',
+      question: 'Onde acontece o atendimento?',
       answer:
-        'O primeiro encontro é um espaço de conversa. É o momento de você contar o que te trouxe até aqui, tirar dúvidas sobre o processo e combinarmos juntos os próximos passos.',
-    },
-    {
-      question: 'Qual a duração das sessões?',
-      answer:
-        'Cada sessão tem duração de 50 minutos. A frequência dos encontros é definida em conjunto, de acordo com a sua necessidade.',
-    },
-    {
-      question: 'Atende online?',
-      answer:
-        'Sim. O atendimento acontece de forma online e também presencial, em Vila Velha - ES. Você escolhe o formato que fizer mais sentido para a sua rotina.',
+        'O atendimento presencial acontece em Praia da Costa, Vila Velha - ES. O endereço completo está na seção de localização, com link direto para o Google Maps.',
     },
     {
       question: 'Como faço para agendar?',
@@ -514,15 +404,13 @@ export const contact = {
   whatsappLabel: 'Agendar pelo WhatsApp',
   instagramLabel: 'Ver no Instagram',
   /**
-   * [OK — CONFIRMADO] Modalidade de atendimento, como nota discreta abaixo
-   * dos botões. NÃO acrescentar aqui reembolso, convênios, valores, recibos
+   * [OK — CONFIRMADO] Informação sobre o atendimento. NÃO acrescentar aqui
+   * reembolso, convênios, valores, recibos
    * ou formas de pagamento — nada disso foi informado pelo profissional.
    */
   paymentNote: 'Atendimento particular · Não aceita plano de saúde',
   presentialTitle: 'Atendimento presencial',
   presentialCity: 'Vila Velha - ES',
-  /** [PROVISÓRIO] Abrangência do atendimento online — confirmar com o Magno. */
-  onlineNote: 'Atendimento online para todo o Brasil e exterior.',
 } as const
 
 /* --------------------------------------------------------------------------

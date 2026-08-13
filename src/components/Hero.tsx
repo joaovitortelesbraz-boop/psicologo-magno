@@ -58,13 +58,13 @@ export function Hero() {
       <div className="relative z-10 mx-auto max-w-shell px-5 pt-[var(--header-h)] sm:px-8 lg:px-10">
         <div className="grid items-center gap-y-10 pb-14 pt-10 lg:h-[min(86vh,780px)] lg:min-h-[620px] lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.95fr)_minmax(215px,0.85fr)] lg:gap-x-6 lg:py-0 xl:gap-x-8">
           {/* ------------------------------------------------ Coluna esquerda */}
-          <Reveal className="max-w-[520px] lg:max-w-none">
+          <Reveal className="max-w-[520px] lg:min-w-0 lg:max-w-none">
             <p className="eyebrow">
               {professional.roleFull} <span aria-hidden="true">·</span> {professional.crp}
             </p>
 
             {/* Escala calibrada pela referência: ~44px em 1024 e ~58px em 1440. */}
-            <h1 className="mt-5 font-serif font-light leading-[1.06] tracking-[-0.01em] text-ink-900 [font-size:clamp(2.25rem,0.6rem+3.37vw,3.625rem)]">
+            <h1 className="mt-5 font-serif font-light leading-[1.06] tracking-[-0.01em] text-ink-900 [font-size:clamp(2.25rem,0.6rem+3.37vw,3.625rem)] lg:max-w-[clamp(26.5rem,calc(27vw+3.8rem),31rem)]">
               {hero.titleLines.map((line) => (
                 <span key={line} className="block">
                   {line}

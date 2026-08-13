@@ -54,12 +54,6 @@ export function ContactCTA() {
               <span className="block text-ink-500">{contact.presentialCity}</span>
             </p>
           </div>
-
-          <hr className="my-4 max-w-[230px] border-line" />
-
-          <p className="max-w-[230px] font-sans text-[12.5px] leading-[1.7] text-ink-500">
-            {contact.onlineNote}
-          </p>
         </Reveal>
       </div>
     </section>

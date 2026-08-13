@@ -5,7 +5,7 @@ import { Hero } from './components/Hero'
 import { About } from './components/About'
 import { Services } from './components/Services'
 import { NeuropsychAssessment } from './components/NeuropsychAssessment'
-import { TherapyProcess } from './components/TherapyProcess'
+import { AssessmentProcess } from './components/AssessmentProcess'
 import { Approach } from './components/Approach'
 import { FAQ } from './components/FAQ'
 import { ContactCTA } from './components/ContactCTA'
@@ -59,7 +59,7 @@ export default function App() {
 
         <SplitBand className="bg-blush" columns="58/42">
           <Services />
-          <TherapyProcess />
+          <AssessmentProcess />
         </SplitBand>
 
         <NeuropsychAssessment />
