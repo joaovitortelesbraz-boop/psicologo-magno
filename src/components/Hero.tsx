@@ -47,6 +47,10 @@ function HeroPhoto({ className = '' }: { className?: string }) {
 }
 
 export function Hero() {
+  const [titleOpening, titleClosing] = hero.titleLines
+  const lastSpace = titleClosing.lastIndexOf(' ')
+  const desktopBreakAt = titleClosing.lastIndexOf(' ', lastSpace - 1)
+
   return (
     <section id="inicio" className="relative overflow-hidden">
       {/* Camada de ambiente + foto. Isolada para que o blend da foto atinja
@@ -63,13 +67,13 @@ export function Hero() {
               {professional.roleFull} <span aria-hidden="true">·</span> {professional.crp}
             </p>
 
-            {/* Escala calibrada pela referência: ~44px em 1024 e ~58px em 1440. */}
-            <h1 className="mt-5 font-serif font-light leading-[1.06] tracking-[-0.01em] text-ink-900 [font-size:clamp(2.25rem,0.6rem+3.37vw,3.625rem)] lg:max-w-[clamp(26.5rem,calc(27vw+3.8rem),31rem)]">
-              {hero.titleLines.map((line) => (
-                <span key={line} className="block">
-                  {line}
-                </span>
-              ))}
+            <h1 className="mt-5 font-serif font-light leading-[1.06] tracking-[-0.01em] text-ink-900 [font-size:clamp(2.25rem,0.6rem+3.37vw,3.625rem)] lg:max-w-[380px] lg:[font-size:clamp(2.75rem,2rem+1.2vw,3.25rem)] xl:max-w-[420px]">
+              <span className="block">{titleOpening}</span>
+              <span className="block">
+                {titleClosing.slice(0, desktopBreakAt)}{' '}
+                <br aria-hidden="true" className="hidden lg:block" />
+                {titleClosing.slice(desktopBreakAt + 1)}
+              </span>
             </h1>
 
             {/* Sem CTA neste bloco: o respiro do parágrafo é o fecho da
